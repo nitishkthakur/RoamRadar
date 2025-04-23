@@ -118,10 +118,30 @@
                         <div class="card shadow-sm">
                           <div class="card-body">
                             <h6 class="card-title">Region</h6>
-                            <p class="card-text display-6">{{ region }}</p>
+                            <p class="card-text display-6" style = 'font-size: 1.6rem;'>{{ region }}</p>
                           </div>
                         </div>
                       </div>
+                    <div class="row text-center">
+                      <form method="get" action="/" class="row g-3 mb-4">
+                        <div class="col-auto">
+                          <input
+                            type="text"
+                            name="city"
+                            class="form-control"
+                            placeholder="Enter city"
+                            value="{{ request.query_params.get('city', '') }}"
+                            aria-label="City"
+                            required
+                          >
+                        </div>
+                        <div class="col-auto">
+                          <button type="submit" class="btn btn-primary mb-3">
+                            Get Weather
+                          </button>
+                        </div>
+                      </form>
+                    </div>
                   
                     </div>
                   </div>
@@ -135,14 +155,14 @@
 
         <!-- ✅ Chat Section -->
         <div class="mb-3">
-            <h4>What's up?</h4>
+            <h4>Ask anything about your travel</h4>
             <!-- Textarea input -->
-            <textarea class="form-control" rows="2" placeholder="Ask me anything about your travel..."></textarea>
+            <textarea class="form-control" rows="2" placeholder="Ask anything about your travel"></textarea>
         </div>
 
         <!-- Label for LLM response -->
         <div>
-            <label class="form-label">LLM Response will appear here...</label>
+            <label class="form-label">Placeholder for LLM Response</label>
         </div>
         
     </div>

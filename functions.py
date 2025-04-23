@@ -1,3 +1,5 @@
+import httpx
+
 def extract_current_weather_parameters(json_return):
     weather_dict = {}
     weather_dict['Place'] = json_return.get('location').get('name')
@@ -17,3 +19,13 @@ def extract_current_weather_parameters(json_return):
     weather_dict['precip_mm'] = json_return.get('current').get('precip_mm')
     weather_dict['aqi'] = json_return.get('current').get('aqi')
     return weather_dict
+
+
+async def get_weather_data(city: str, api_key: str) -> dict:
+    """
+    Fetch weather data from the API for a given city.
+    """
+    url = f"http://api.weatherapi.com/v1/current.json"
+    async with httpx.AsyncClient() as client:
+        response = await client.get(url, params = {'q': city, 'key':api_key})
+        return response.json()
