@@ -35,9 +35,9 @@ async def read_root(request: Request, city:str = "Thimphu"):
     temperature_parameters = extract_current_weather_parameters(temperature_parameters)
     #temperature_parameters = extract_current_weather_parameters(weather_response)
 
-    context = {"request": request, "title": "Welcome", "user": "Nitish", "temperature": temperature_parameters['Temperature (deg. C)'], 
+    context = {"request": request, "title": "RoamRadar", "user": "Nitish", "temperature": temperature_parameters['Temperature (deg. C)'], 
                "condition": temperature_parameters['Condition'], "place": temperature_parameters['Place'], 
-               "region": temperature_parameters['Place'] + ', '+temperature_parameters['Region'] + ', ' + temperature_parameters['Country'], "country": temperature_parameters['Country'],
+               "region": temperature_parameters['Place'] + ', ' + temperature_parameters['Region'] + ', ' + temperature_parameters['Country'], "country": temperature_parameters['Country'],
                "feels_like": temperature_parameters['Feels Like (deg. C)'], "last_updated": temperature_parameters['Last Updated'],
                "windspeed": temperature_parameters['Wind Speed(kmph)'], "humidity": temperature_parameters['humidity'],
                "pressure": temperature_parameters['Pressure(mb)'], "visibility": temperature_parameters['Visibility(km)'],
