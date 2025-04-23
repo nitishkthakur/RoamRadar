@@ -35,7 +35,101 @@
         <div class="card mb-4 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title">Weather</h5>
-                <p class="card-text">This section will show temperature, humidity, etc.</p>
+
+
+
+
+
+                <div class="container mt-4">
+                    <div class="row text-center">
+                  
+                      <!-- Card 1 -->
+                      <div class="col-md-3 col-sm-4 mb-3">
+                        <div class="card shadow-sm">
+                          <div class="card-body">
+                            <h6 class="card-title">Temperature (°C)</h6>
+                            <p class="card-text display-6">{{ temperature }}</p>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                      <div class="col-md-3 col-sm-4 mb-3">
+                        <div class="card shadow-sm">
+                          <div class="card-body">
+                            <h6 class="card-title">Humidity (%)</h6>
+                            <p class="card-text display-6">{{ humidity }}</p>
+                          </div>
+                        </div>
+                      </div>
+                  
+                      <!-- Card 2 -->
+                      <div class="col-md-3 col-sm-4 mb-3">
+                        <div class="card shadow-sm">
+                          <div class="card-body">
+                            <h6 class="card-title">Visibility(km)</h6>
+                            <p class="card-text display-6">{{ visibility }}</p>
+                          </div>
+                        </div>
+                      </div>
+                  
+                      <div class="col-md-3 col-sm-4 mb-3">
+                        <div class="card shadow-sm">
+                          <div class="card-body">
+                            <h6 class="card-title">Condition</h6>
+                            <p class="card-text display-6" style="font-size: 1.8rem;">{{ condition }}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div class="row text-center">
+
+                      <div class="row text-center">
+                    
+                      
+
+                      <div class="col-md-3 col-sm-4 mb-3">
+                        <div class="card shadow-sm">
+                          <div class="card-body">
+                            <h6 class="card-title">Wind Speed(kmph)</h6>
+                            <p class="card-text display-6">{{ windspeed }}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-4 mb-3">
+                        <div class="card shadow-sm">
+                          <div class="card-body">
+                            <h6 class="card-title">Precipitation (mm)</h6>
+                            <p class="card-text display-6">{{ precip_mm }}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-4 mb-3">
+                        <div class="card shadow-sm">
+                          <div class="card-body">
+                            <h6 class="card-title">Pressure(mb)</h6>
+                            <p class="card-text display-6">{{ pressure }}</p>
+                          </div>
+                        </div>
+                      </div>
+                  
+                      <div class="col-md-3 col-sm-4 mb-3">
+                        <div class="card shadow-sm">
+                          <div class="card-body">
+                            <h6 class="card-title">Region</h6>
+                            <p class="card-text display-6">{{ region }}</p>
+                          </div>
+                        </div>
+                      </div>
+                  
+                    </div>
+                  </div>
+
+
+
+
+                <p class="card-text"></p>
             </div>
         </div>
 
