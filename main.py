@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Request
+from fastapi import Form
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -8,7 +9,14 @@ import os
 import dotenv
 import json
 from functions import extract_current_weather_parameters, get_weather_data
-
+from google import genai
+from google.genai import types
+from functions import generate
+from pydantic import BaseModel
+import  diskcache as dc
+class SearchInput(BaseModel):
+    query: str
+cache = dc.Cache("cache")  # 1 kb cache
 # Load Secrets from Environment Variables
 dotenv.load_dotenv()
 API_KEY = os.getenv("WEATHER_API_KEY")
@@ -42,6 +50,22 @@ async def read_root(request: Request, city:str = "Thimphu"):
                "windspeed": temperature_parameters['Wind Speed(kmph)'], "humidity": temperature_parameters['humidity'],
                "pressure": temperature_parameters['Pressure(mb)'], "visibility": temperature_parameters['Visibility(km)'],
                "cloud": temperature_parameters['Cloud'], "precip_mm": temperature_parameters['precip_mm']}
-    
+    cache.set("weather_data", temperature_parameters, expire=60*60*24)
     # Render the HTML template with the context data
     return templates.TemplateResponse("index.html", context)
+
+
+@app.post("/search", response_class=HTMLResponse)
+async def search(request: Request, data: SearchInput):
+    # Get the search query from the form
+    #form_data = data
+    print(data)
+    search_query = data.query
+    
+    # Call the generate function to get the response
+    response = generate(search_query)
+    weather_data_ = cache.get("weather_data")
+    weather_data_['response'] = response
+    weather_data_['request'] = request
+    # Render the HTML template with the response data
+    return templates.TemplateResponse("index.html", weather_data_)

@@ -154,15 +154,20 @@
         </div>
 
         <!-- ✅ Chat Section -->
-        <div class="mb-3">
+        <div class="form-container mb-4">
             <h4>Ask anything about your travel</h4>
             <!-- Textarea input -->
-            <textarea class="form-control" rows="2" placeholder="Ask anything about your travel"></textarea>
+
+            <form action = "/search" method = "POST">
+              <textarea  name="query" class="form-control" rows="2" placeholder="Ask anything about your travel"></textarea>
+              <button type = "submit">Search</button>
+            </form>
+            
         </div>
 
         <!-- Label for LLM response -->
         <div>
-            <label class="form-label">Placeholder for LLM Response</label>
+            <label class="form-label">{{response}}</label>
         </div>
         
     </div>

@@ -1,4 +1,8 @@
 import httpx
+import base64
+import os
+from google import genai
+from google.genai import types
 
 def extract_current_weather_parameters(json_return):
     weather_dict = {}
@@ -29,3 +33,40 @@ async def get_weather_data(city: str, api_key: str) -> dict:
     async with httpx.AsyncClient() as client:
         response = await client.get(url, params = {'q': city, 'key':api_key})
         return response.json()
+    
+
+
+def generate(user_query):
+    client = genai.Client(
+        api_key=os.environ.get("GEMINI_API_KEY"),
+    )
+
+    model = "gemini-2.0-flash"
+    contents = [
+        types.Content(
+            role="user",
+            parts=[
+                types.Part.from_text(text=user_query),
+            ],
+        ),
+    ]
+    tools = [
+        types.Tool(google_search=types.GoogleSearch()),
+    ]
+    generate_content_config = types.GenerateContentConfig(
+        top_p=0.95,
+        thinking_config = types.ThinkingConfig(
+            thinking_budget=0,
+        ),
+        tools=tools,
+        response_mime_type="text/plain",
+    )
+    r = []
+    for chunk in client.models.generate_content_stream(
+        model=model,
+        contents=contents,
+        config=generate_content_config,
+    ):
+        r.append(chunk.text)
+    response = "".join(r)
+    return response
