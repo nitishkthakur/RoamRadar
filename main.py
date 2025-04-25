@@ -56,11 +56,11 @@ async def read_root(request: Request, city:str = "Thimphu"):
 
 
 @app.post("/search", response_class=HTMLResponse)
-async def search(request: Request, data: SearchInput):
+async def search(request: Request, query: str = Form(...)):
     # Get the search query from the form
     #form_data = data
-    print(data)
-    search_query = data.query
+    print(query)
+    search_query = query
     
     # Call the generate function to get the response
     response = generate(search_query)
