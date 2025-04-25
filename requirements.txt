@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+httpx
+requests
+python-dotenv
+pydantic
+diskcache
+google-generativeai
+jinja2
