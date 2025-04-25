@@ -14,9 +14,15 @@ from google.genai import types
 from functions import generate
 from pydantic import BaseModel
 import  diskcache as dc
+import markdown
+import logging
+logger = logging.getLogger("uvicorn.error")
+logger.setLevel(logging.DEBUG)   # or INFO
+logger.info('Started')
 class SearchInput(BaseModel):
     query: str
 cache = dc.Cache("cache")  # 1 kb cache
+logger.info('Cache created')
 # Load Secrets from Environment Variables
 dotenv.load_dotenv()
 API_KEY = os.getenv("WEATHER_API_KEY")
@@ -50,7 +56,11 @@ async def read_root(request: Request, city:str = "Thimphu"):
                "windspeed": temperature_parameters['Wind Speed(kmph)'], "humidity": temperature_parameters['humidity'],
                "pressure": temperature_parameters['Pressure(mb)'], "visibility": temperature_parameters['Visibility(km)'],
                "cloud": temperature_parameters['Cloud'], "precip_mm": temperature_parameters['precip_mm']}
-    cache.set("weather_data", temperature_parameters, expire=60*60*24)
+    
+    context_minus_request = {k: v for k, v in context.items() if k != "request"}
+    cache.set("weather_data", context_minus_request, expire=60*60*24)
+    logger.info('Cache Set')
+
     # Render the HTML template with the context data
     return templates.TemplateResponse("index.html", context)
 
@@ -64,8 +74,12 @@ async def search(request: Request, query: str = Form(...)):
     
     # Call the generate function to get the response
     response = generate(search_query)
+    logger.info('Getting from cache')
     weather_data_ = cache.get("weather_data")
+    logger.info(f'Loaded from cache: {weather_data_}')
+    print(weather_data_)
     weather_data_['response'] = response
     weather_data_['request'] = request
+    
     # Render the HTML template with the response data
     return templates.TemplateResponse("index.html", weather_data_)

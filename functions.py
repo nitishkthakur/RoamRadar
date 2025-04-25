@@ -70,3 +70,5 @@ def generate(user_query):
         r.append(chunk.text)
     response = "".join(r)
     return response
+
+
