@@ -5,6 +5,8 @@
     <title>{{ title }}</title>
     <!-- ✅ Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+
     <link rel="stylesheet" href="/static/style.css">
     <style>
         .navbar-custom {
@@ -153,12 +155,12 @@
             </div>
         </div>
 
-        <!-- ✅ Chat Section -->
+        <!--  Chat Section -->
         <div class="form-container mb-4">
             <h4>Ask anything about your travel</h4>
             <!-- Textarea input -->
 
-            <form action = "/search" method = "POST">
+            <form hx-post="/search" hx-target="#llm-response" hx-swap="innerHTML">
               <textarea  name="query" class="form-control" rows="2" placeholder="Ask anything about your travel"></textarea>
               <button type = "submit">Search</button>
             </form>
@@ -167,7 +169,7 @@
 
         <!-- Label for LLM response -->
         <div class="markdown-body">
-            <label class="markdown-body">{{response}}</label>
+            <label class="markdown-body", id="llm-response">{{response}}</label>
         </div>
         
     </div>
