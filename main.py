@@ -82,5 +82,5 @@ async def search(request: Request, query: str = Form(...)):
     weather_data_['request'] = request
     
     # Render the HTML template with the response data
-    r#eturn templates.TemplateResponse("index.html", weather_data_)
+    #return templates.TemplateResponse("index.html", weather_data_)
     return templates.TemplateResponse("templates/llm_response.html", {"request": request, "response": response})
