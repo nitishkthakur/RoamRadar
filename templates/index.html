@@ -162,14 +162,14 @@
 
             <form hx-post="/search" hx-target="#llm-response" hx-swap="innerHTML">
               <textarea  name="query" class="form-control" rows="2" placeholder="Ask anything about your travel"></textarea>
-              <button type = "submit">Search</button>
+              <button type = "submit" class="btn btn-primary mb-3">Search</button>
             </form>
             
         </div>
 
         <!-- Label for LLM response -->
         <div class="markdown-body">
-            <label class="markdown-body", id="llm-response">{{response}}</label>
+            <label class="markdown-body" id="llm-response">{{response}}</label>
         </div>
         
     </div>
