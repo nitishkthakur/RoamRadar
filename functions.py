@@ -3,6 +3,7 @@ import base64
 import os
 from google import genai
 from google.genai import types
+import asyncio
 
 def extract_current_weather_parameters(json_return):
     weather_dict = {}
@@ -72,3 +73,5 @@ def generate(user_query):
     return response
 
 
+async def generate_async(user_query: str) -> str:
+    return await asyncio.to_thread(generate, user_query)
