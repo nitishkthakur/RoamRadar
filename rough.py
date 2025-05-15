@@ -17,4 +17,19 @@ async def main():
             fetch_async(client, "https://httpbin.org/delay/2", 3, t0),
         )
     print(f"TOTAL @ {time.time() - t0:.2f}s")
+
+
+
+def blocking_function():
+    time.sleep(4)  # Simulate a slow task
+    return 42
+
+async def main():
+    loop = asyncio.get_running_loop()
+    future = loop.run_in_executor(None, blocking_function)
+    print("Before await")
+    result = await future  # Pauses here until blocking_function finishes
+    print("After Await, but before using the variable which is to be awaited")
+    print("After Await", result)  # Outputs 42
+
 asyncio.run(main())

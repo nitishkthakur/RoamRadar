@@ -64,6 +64,29 @@ async def read_root(request: Request, city:str = "Thimphu"):
     # Render the HTML template with the context data
     return templates.TemplateResponse("index.html", context)
 
+@app.get("/weather-cards", response_class=HTMLResponse)
+async def read_weather(request: Request, city:str = "Thimphu"):
+    # Make the Weather API call
+    #weather_response = httpx.get("https://api.weatherapi.com/v1/current.json", params = {'q': 'Thimphu', 'key': API_KEY, 'aqi':'yes'}).json()
+    temperature_parameters = await get_weather_data(city, API_KEY)
+    temperature_parameters = extract_current_weather_parameters(temperature_parameters)
+    #temperature_parameters = extract_current_weather_parameters(weather_response)
+
+    context = {"request": request, "title": "RoamRadar", "user": "Nitish", "temperature": temperature_parameters['Temperature (deg. C)'], 
+               "condition": temperature_parameters['Condition'], "place": temperature_parameters['Place'], 
+               "region": temperature_parameters['Place'] + ', ' + temperature_parameters['Region'] + ', ' + temperature_parameters['Country'], "country": temperature_parameters['Country'],
+               "feels_like": temperature_parameters['Feels Like (deg. C)'], "last_updated": temperature_parameters['Last Updated'],
+               "windspeed": temperature_parameters['Wind Speed(kmph)'], "humidity": temperature_parameters['humidity'],
+               "pressure": temperature_parameters['Pressure(mb)'], "visibility": temperature_parameters['Visibility(km)'],
+               "cloud": temperature_parameters['Cloud'], "precip_mm": temperature_parameters['precip_mm']}
+    
+    context_minus_request = {k: v for k, v in context.items() if k != "request"}
+    cache.set("weather_data", context_minus_request, expire=60*60*24)
+    logger.info('Cache Set')
+
+    # Render the HTML template with the context data
+    return templates.TemplateResponse("weather_partial.html", context)
+
 
 @app.post("/search", response_class=HTMLResponse)
 async def search(request: Request, query: str = Form(...)):
@@ -81,7 +104,10 @@ async def search(request: Request, query: str = Form(...)):
     weather_data_['response'] = response
     weather_data_['request'] = request
     
+    # Convert response to markdown
+    markdown_response = markdown.markdown(response)
     # Render the HTML template with the response data
     #return templates.TemplateResponse("index.html", weather_data_)
     #return templates.TemplateResponse("templates/llm_response.html", {"request": request, "response": response})
-    return HTMLResponse(f"<div class='p-2 border rounded'>{response }</div>")
+    #return HTMLResponse(f"<div class='p-2 border rounded'>{markdown_response }</div>")
+    return HTMLResponse(f"<div class='markdown-body'>{markdown_response }</div>")
