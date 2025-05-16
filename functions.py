@@ -3,7 +3,7 @@ import os
 from google import genai
 from google.genai import types
 import asyncio
-
+from typing import Optional
 def extract_current_weather_parameters(json_return):
     weather_dict = {}
     weather_dict['Place'] = json_return.get('location').get('name')
@@ -25,7 +25,7 @@ def extract_current_weather_parameters(json_return):
     return weather_dict
 
 
-async def get_weather_data(city: str, api_key: str) -> dict:
+async def get_weather_data(city, api_key: Optional[str]) -> dict:
     """
     Fetch weather data from the API for a given city.
     """
@@ -33,7 +33,7 @@ async def get_weather_data(city: str, api_key: str) -> dict:
     async with httpx.AsyncClient() as client:
         response = await client.get(url, params = {'q': city, 'key':api_key})
         return response.json()
-    
+
 
 
 def generate(user_query):

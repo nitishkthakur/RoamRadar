@@ -1,2 +1,2 @@
 # RoamRadar
-AI enriched Travel Companion. 
+AI enriched Travel Companion.

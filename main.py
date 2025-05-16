@@ -24,6 +24,8 @@ logger.info('Cache created')
 # Load Secrets from Environment Variables
 dotenv.load_dotenv()
 API_KEY = os.getenv("WEATHER_API_KEY")
+if API_KEY is None:
+    raise RuntimeError("WEATHER_API_KEY environment variable not set")
 API_URL = "https://api.openai.com/v1/chat/completions"
 
 # Start the App
@@ -43,14 +45,15 @@ async def read_root(request: Request, city:str = "Thimphu"):   # ASYNC HANDLER!
     temperature_parameters = await get_weather_data(city, API_KEY)    # ASYNC: await non-blocking I/O call
     temperature_parameters = extract_current_weather_parameters(temperature_parameters)
 
-    context = {"request": request, "title": "RoamRadar", "user": "Nitish", "temperature": temperature_parameters['Temperature (deg. C)'], 
-               "condition": temperature_parameters['Condition'], "place": temperature_parameters['Place'], 
-               "region": temperature_parameters['Place'] + ', ' + temperature_parameters['Region'] + ', ' + temperature_parameters['Country'], "country": temperature_parameters['Country'],
+    context = {"request": request, "title": "RoamRadar", "user": "Nitish", "temperature": temperature_parameters['Temperature (deg. C)'],
+               "condition": temperature_parameters['Condition'], "place": temperature_parameters['Place'],
+               "region": temperature_parameters['Place'] + ', ' + temperature_parameters['Region'] + ', ' + temperature_parameters['Country'],
+               "country": temperature_parameters['Country'],
                "feels_like": temperature_parameters['Feels Like (deg. C)'], "last_updated": temperature_parameters['Last Updated'],
                "windspeed": temperature_parameters['Wind Speed(kmph)'], "humidity": temperature_parameters['humidity'],
                "pressure": temperature_parameters['Pressure(mb)'], "visibility": temperature_parameters['Visibility(km)'],
                "cloud": temperature_parameters['Cloud'], "precip_mm": temperature_parameters['precip_mm']}
-    
+
     context_minus_request = {k: v for k, v in context.items() if k != "request"}
     cache.set("weather_data", context_minus_request, expire=60*60*24)
     logger.info('Cache Set')
@@ -64,14 +67,15 @@ async def read_weather(request: Request, city:str = "Thimphu"):    # ASYNC HANDL
     temperature_parameters = await get_weather_data(city, API_KEY)    # ASYNC: await!
     temperature_parameters = extract_current_weather_parameters(temperature_parameters)
 
-    context = {"request": request, "title": "RoamRadar", "user": "Nitish", "temperature": temperature_parameters['Temperature (deg. C)'], 
-               "condition": temperature_parameters['Condition'], "place": temperature_parameters['Place'], 
-               "region": temperature_parameters['Place'] + ', ' + temperature_parameters['Region'] + ', ' + temperature_parameters['Country'], "country": temperature_parameters['Country'],
+    context = {"request": request, "title": "RoamRadar", "user": "Nitish", "temperature": temperature_parameters['Temperature (deg. C)'],
+               "condition": temperature_parameters['Condition'], "place": temperature_parameters['Place'],
+               "region": temperature_parameters['Place'] + ', ' + temperature_parameters['Region'] + ', ' + temperature_parameters['Country'],
+               "country": temperature_parameters['Country'],
                "feels_like": temperature_parameters['Feels Like (deg. C)'], "last_updated": temperature_parameters['Last Updated'],
                "windspeed": temperature_parameters['Wind Speed(kmph)'], "humidity": temperature_parameters['humidity'],
                "pressure": temperature_parameters['Pressure(mb)'], "visibility": temperature_parameters['Visibility(km)'],
                "cloud": temperature_parameters['Cloud'], "precip_mm": temperature_parameters['precip_mm']}
-    
+
     context_minus_request = {k: v for k, v in context.items() if k != "request"}
     cache.set("weather_data", context_minus_request, expire=60*60*24)
     logger.info('Cache Set')
@@ -84,7 +88,7 @@ async def read_weather(request: Request, city:str = "Thimphu"):    # ASYNC HANDL
 async def search(request: Request, query: str = Form(...)):    # ASYNC HANDLER!
     print(query)
     search_query = query
-    
+
     # Call the generate function to get the response (non-blocking: runs in separate thread)
     response = await generate_async(search_query)      # ASYNC/TRHEADING: this is an async wrapper over the blocking LLM API call
 
@@ -94,7 +98,7 @@ async def search(request: Request, query: str = Form(...)):    # ASYNC HANDLER!
     print(weather_data_)
     weather_data_['response'] = response
     weather_data_['request'] = request
-    
+
     # Convert response to markdown
     markdown_response = markdown.markdown(response)
     # Render the HTML template with the response data
