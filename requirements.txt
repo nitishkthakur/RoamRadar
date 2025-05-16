@@ -11,3 +11,4 @@ markdown
 python-multipart
 pytest
 ruff
+pre-commit
