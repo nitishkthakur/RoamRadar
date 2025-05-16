@@ -20,7 +20,7 @@ async def main():
 
 
 
-def blocking_function():
+'''def blocking_function():
     time.sleep(4)  # Simulate a slow task
     return 42
 
@@ -32,4 +32,4 @@ async def main():
     print("After Await, but before using the variable which is to be awaited")
     print("After Await", result)  # Outputs 42
 
-asyncio.run(main())
+asyncio.run(main())'''
