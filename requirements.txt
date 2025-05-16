@@ -9,3 +9,4 @@ google-genai
 jinja2
 markdown
 python-multipart
+pytest
