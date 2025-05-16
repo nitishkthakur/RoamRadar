@@ -3,15 +3,10 @@ from fastapi import Form                  # FastAPI-specific
 from fastapi.responses import HTMLResponse  # FastAPI-specific
 from fastapi.staticfiles import StaticFiles  # FastAPI-specific
 from fastapi.templating import Jinja2Templates # FastAPI-specific
-import httpx       # for async HTTP, but not used in this file
-import requests    # not async; be careful if used for I/O!
 import os
 import dotenv
-import json
 from functions import extract_current_weather_parameters, get_weather_data
-from google import genai
-from google.genai import types
-from functions import generate, generate_async   # Note: generate_async is async/threading-related
+from functions import generate_async   # Note: generate_async is async/threading-related
 from pydantic import BaseModel
 import  diskcache as dc
 import markdown

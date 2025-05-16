@@ -1,5 +1,4 @@
 import httpx
-import base64
 import os
 from google import genai
 from google.genai import types
@@ -30,7 +29,7 @@ async def get_weather_data(city: str, api_key: str) -> dict:
     """
     Fetch weather data from the API for a given city.
     """
-    url = f"http://api.weatherapi.com/v1/current.json"
+    url = "http://api.weatherapi.com/v1/current.json"
     async with httpx.AsyncClient() as client:
         response = await client.get(url, params = {'q': city, 'key':api_key})
         return response.json()
