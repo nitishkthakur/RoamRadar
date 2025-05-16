@@ -11,7 +11,6 @@ from pydantic import BaseModel
 import  diskcache as dc
 import markdown
 import logging
-import asyncio
 logger = logging.getLogger("uvicorn.error")
 logger.setLevel(logging.DEBUG)   # or INFO
 logger.info('Started')
