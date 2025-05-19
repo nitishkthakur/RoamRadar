@@ -11,3 +11,12 @@ body {
     box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
     margin-top: 50px;
 }
+.markdown-body {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

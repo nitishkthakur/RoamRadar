@@ -19,6 +19,18 @@
         textarea {
             resize: true;
         }
+        #search-button {
+            margin-top: 10px;
+        }
+        .markdown-body {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
         /* Hide by default, show when HTMX adds .htmx-request */
         #llm-spinner { display: none; position: absolute; top: .5rem; right: .5rem; }
@@ -33,7 +45,7 @@
   <!-- ✅ Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
       <div class="container-fluid">
-          <a class="navbar-brand" href="#">RoamRadar</a>
+          <a class="navbar-brand" href="#">Roam Radar</a>
       </div>
   </nav>
 
@@ -172,14 +184,14 @@
 
           <form hx-post="/search" hx-target="#llm-response" hx-swap="innerHTML" hx-indicator="#llm-spinner">
             <textarea  name="query" class="form-control" rows="2" placeholder="Ask anything about your travel"></textarea>
-            <button type = "submit" class="btn btn-primary mb-3">Search</button>
+            <button type = "submit" class="btn btn-primary mb-3" id="search-button">Search</button>
           </form>
 
       </div>
 
       <!-- Label for LLM response -->
-      <div class="markdown-body">
-          <label class="markdown-body" id="llm-response">{{response}}</label>
+      <div id="llm-response">
+          {{response}}
       </div>
 
   </div>
