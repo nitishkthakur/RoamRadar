@@ -11,9 +11,18 @@ from pydantic import BaseModel
 import  diskcache as dc
 import markdown
 import logging
+
+# Set some settings
+
+
+
+
 logger = logging.getLogger("uvicorn.error")
 logger.setLevel(logging.DEBUG)   # or INFO
 logger.info('Started')
+
+
+
 
 class SearchInput(BaseModel):     # Pydantic model for type validation, FastAPI-friendly
     query: str
