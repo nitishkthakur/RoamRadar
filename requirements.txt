@@ -12,3 +12,6 @@ python-multipart
 pytest
 ruff
 pre-commit
+pytest
+hypothesis
+mutmut
