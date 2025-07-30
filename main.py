@@ -114,4 +114,4 @@ async def search(request: Request, query: str = Form(...)):    # ASYNC HANDLER!
     #return templates.TemplateResponse("index.html", weather_data_)
     #return templates.TemplateResponse("templates/llm_response.html", {"request": request, "response": response})
     #return HTMLResponse(f"<div class='p-2 border rounded'>{markdown_response }</div>")
-    return HTMLResponse(f"<div class='markdown-body'>{markdown_response }</div>")  # FastAPI response
+    return HTMLResponse(f"<div class='markdown-body'>{markdown_response }</div>")  # FastAPI r esponse
