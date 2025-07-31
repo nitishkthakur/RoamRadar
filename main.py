@@ -110,8 +110,16 @@ async def search(request: Request, query: str = Form(...)):    # ASYNC HANDLER!
 
     # Convert response to markdown
     markdown_response = markdown.markdown(response)
-    # Render the HTML template with the response data
-    #return templates.TemplateResponse("index.html", weather_data_)
-    #return templates.TemplateResponse("templates/llm_response.html", {"request": request, "response": response})
-    #return HTMLResponse(f"<div class='p-2 border rounded'>{markdown_response }</div>")
-    return HTMLResponse(f"<div class='markdown-body'>{markdown_response }</div>")  # FastAPI r esponse
+
+    # Render the HTML template with the response data in a card format
+    card_html = f"""
+    <div class="card">
+        <div class="card-header">
+            <h3>Response</h3>
+        </div>
+        <div class="card-body markdown-body">
+            {markdown_response}
+        </div>
+    </div>
+    """
+    return HTMLResponse(card_html)  # FastAPI response
