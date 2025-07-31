@@ -1,109 +1,116 @@
 <div id="weather-cards">
-              <div class="container mt-4">
-                <div class="row text-center">
+  <div class="space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 
-                    <!-- Card 1 -->
+        <!-- Weather Metric Cards -->
+        <div class="bg-fluent-gray-50 dark:bg-fluent-dark-surface rounded-lg p-4 border border-fluent-gray-200 dark:border-fluent-dark-border hover:shadow-fluent-sm transition-all duration-200">
+          <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-fluent-gray-600 dark:text-fluent-dark-muted">Temperature</span>
+              <svg class="w-4 h-4 text-fluent-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+              </svg>
+          </div>
+          <div class="text-2xl font-semibold text-fluent-gray-900 dark:text-fluent-dark-text">{{ temperature }}°C</div>
+        </div>
 
-                    <div class="col-md-3 col-sm-4 mb-3">
-                      <div class="card shadow-sm">
-                        <div class="card-body">
-                          <h6 class="card-title">Temperature (°C)</h6>
-                          <p class="card-text display-6">{{ temperature }}</p>
-                        </div>
-                      </div>
-                    </div>
+        <div class="bg-fluent-gray-50 dark:bg-fluent-dark-surface rounded-lg p-4 border border-fluent-gray-200 dark:border-fluent-dark-border hover:shadow-fluent-sm transition-all duration-200">
+          <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-fluent-gray-600 dark:text-fluent-dark-muted">Humidity</span>
+              <svg class="w-4 h-4 text-fluent-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+              </svg>
+          </div>
+          <div class="text-2xl font-semibold text-fluent-gray-900 dark:text-fluent-dark-text">{{ humidity }}%</div>
+        </div>
 
+        <div class="bg-fluent-gray-50 dark:bg-fluent-dark-surface rounded-lg p-4 border border-fluent-gray-200 dark:border-fluent-dark-border hover:shadow-fluent-sm transition-all duration-200">
+          <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-fluent-gray-600 dark:text-fluent-dark-muted">Visibility</span>
+              <svg class="w-4 h-4 text-fluent-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                  <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+              </svg>
+          </div>
+          <div class="text-2xl font-semibold text-fluent-gray-900 dark:text-fluent-dark-text">{{ visibility }}km</div>
+        </div>
 
+        <div class="bg-fluent-gray-50 dark:bg-fluent-dark-surface rounded-lg p-4 border border-fluent-gray-200 dark:border-fluent-dark-border hover:shadow-fluent-sm transition-all duration-200">
+          <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-fluent-gray-600 dark:text-fluent-dark-muted">Condition</span>
+              <svg class="w-4 h-4 text-fluent-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+          </div>
+          <div class="text-lg font-medium text-fluent-gray-900 dark:text-fluent-dark-text">{{ condition }}</div>
+        </div>
 
-                    <div class="col-md-3 col-sm-4 mb-3">
-                      <div class="card shadow-sm">
-                        <div class="card-body">
-                          <h6 class="card-title">Humidity (%)</h6>
-                          <p class="card-text display-6">{{ humidity }}</p>
-                        </div>
-                      </div>
-                    </div>
+    </div>
 
-                    <!-- Card 2 -->
-                    <div class="col-md-3 col-sm-4 mb-3">
-                      <div class="card shadow-sm">
-                        <div class="card-body">
-                          <h6 class="card-title">Visibility(km)</h6>
-                          <p class="card-text display-6">{{ visibility }}</p>
-                        </div>
-                      </div>
-                    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 
-                    <div class="col-md-3 col-sm-4 mb-3">
-                      <div class="card shadow-sm">
-                        <div class="card-body">
-                          <h6 class="card-title">Condition</h6>
-                          <p class="card-text display-6" style="font-size: 1.8rem;">{{ condition }}</p>
-                        </div>
-                      </div>
-                    </div>
+        <div class="bg-fluent-gray-50 dark:bg-fluent-dark-surface rounded-lg p-4 border border-fluent-gray-200 dark:border-fluent-dark-border hover:shadow-fluent-sm transition-all duration-200">
+          <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-fluent-gray-600 dark:text-fluent-dark-muted">Wind Speed</span>
+              <svg class="w-4 h-4 text-fluent-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/>
+              </svg>
+          </div>
+          <div class="text-2xl font-semibold text-fluent-gray-900 dark:text-fluent-dark-text">{{ windspeed }}km/h</div>
+        </div>
 
-                </div>
+        <div class="bg-fluent-gray-50 dark:bg-fluent-dark-surface rounded-lg p-4 border border-fluent-gray-200 dark:border-fluent-dark-border hover:shadow-fluent-sm transition-all duration-200">
+          <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-fluent-gray-600 dark:text-fluent-dark-muted">Precipitation</span>
+              <svg class="w-4 h-4 text-fluent-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+              </svg>
+          </div>
+          <div class="text-2xl font-semibold text-fluent-gray-900 dark:text-fluent-dark-text">{{ precip_mm }}mm</div>
+        </div>
 
-                  <div class="row text-center">
+        <div class="bg-fluent-gray-50 dark:bg-fluent-dark-surface rounded-lg p-4 border border-fluent-gray-200 dark:border-fluent-dark-border hover:shadow-fluent-sm transition-all duration-200">
+          <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-fluent-gray-600 dark:text-fluent-dark-muted">Pressure</span>
+              <svg class="w-4 h-4 text-fluent-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
+              </svg>
+          </div>
+          <div class="text-2xl font-semibold text-fluent-gray-900 dark:text-fluent-dark-text">{{ pressure }}mb</div>
+        </div>
 
+        <div class="bg-fluent-gray-50 dark:bg-fluent-dark-surface rounded-lg p-4 border border-fluent-gray-200 dark:border-fluent-dark-border hover:shadow-fluent-sm transition-all duration-200">
+          <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-fluent-gray-600 dark:text-fluent-dark-muted">Region</span>
+              <svg class="w-4 h-4 text-fluent-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+              </svg>
+          </div>
+          <div class="text-base font-medium text-fluent-gray-900 dark:text-fluent-dark-text">{{ region }}</div>
+        </div>
+      </div>
 
+      <!-- City Search Form -->
+      <div class="mt-6 pt-6 border-t border-fluent-gray-200 dark:border-fluent-dark-border">
+          <form hx-get="/weather-cards" hx-target="#weather-cards" hx-swap="inner-HTML" class="flex gap-3 items-end">
+            <div class="flex-1">
+              <label class="block text-sm font-medium text-fluent-gray-600 dark:text-fluent-dark-muted mb-2">Search Location</label>
+              <input
+                type="text"
+                name="city"
+                class="w-full px-3 py-2 bg-white dark:bg-fluent-dark-surface border border-fluent-gray-300 dark:border-fluent-dark-border rounded-md focus:outline-none focus:ring-2 focus:ring-fluent-blue-500 focus:border-fluent-blue-500 transition-colors duration-200 text-fluent-gray-900 dark:text-fluent-dark-text"
+                placeholder="Enter city name..."
+                value="{{ request.query_params.get('city', '') }}"
+                aria-label="City"
+                required
+              >
+            </div>
+            <div>
+              <button type="submit" class="px-6 py-2 bg-fluent-blue-500 text-white rounded-md hover:bg-fluent-blue-600 focus:outline-none focus:ring-2 focus:ring-fluent-blue-500 focus:ring-offset-2 transition-colors duration-200 font-medium">
+                Update Weather
+              </button>
+            </div>
+          </form>
+      </div>
 
-                    <div class="col-md-3 col-sm-4 mb-3">
-                      <div class="card shadow-sm">
-                        <div class="card-body">
-                          <h6 class="card-title">Wind Speed(kmph)</h6>
-                          <p class="card-text display-6">{{ windspeed }}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 mb-3">
-                      <div class="card shadow-sm">
-                        <div class="card-body">
-                          <h6 class="card-title">Precipitation (mm)</h6>
-                          <p class="card-text display-6">{{ precip_mm }}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 mb-3">
-                      <div class="card shadow-sm">
-                        <div class="card-body">
-                          <h6 class="card-title">Pressure(mb)</h6>
-                          <p class="card-text display-6">{{ pressure }}</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-4 mb-3">
-                      <div class="card shadow-sm">
-                        <div class="card-body">
-                          <h6 class="card-title">Region</h6>
-                          <p class="card-text display-6" style = 'font-size: 1.6rem;'>{{ region }}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row text-center">
-                    <form hx-get="/weather-cards" hx-target="#weather-cards" hx-swap="inner-HTML" class="row g-3 mb-4">
-                      <div class="col-auto">
-                        <input
-                          type="text"
-                          name="city"
-                          class="form-control"
-                          placeholder="Enter city"
-                          value="{{ request.query_params.get('city', '') }}"
-                          aria-label="City"
-                          required
-                        >
-                      </div>
-                      <div class="col-auto">
-                        <button type="submit" class="btn btn-primary mb-3">
-                          Get Weather
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-
-                  </div>
-                </div>
+  </div>
+</div>

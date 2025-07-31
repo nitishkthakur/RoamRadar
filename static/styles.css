@@ -1,22 +1,219 @@
-body {
-    background-color: #f0f4f8;
-    font-family: Arial, sans-serif;
-}
-.container {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
+/* Fluent Design System Styles */
+
+/* Custom card components for Fluent Design */
+.card {
     background-color: white;
-    border-radius: 12px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-    margin-top: 50px;
-}
-.markdown-body {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #e1dfdd;
     border-radius: 8px;
-    padding: 20px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
+/* Dark theme card styling */
+.dark .card {
+    background-color: #2d2d30;
+    border: 1px solid #3e3e42;
+    color: #ffffff;
+}
+
+.card-header {
+    padding: 16px 24px;
+    background-color: #faf9f8;
+    border-bottom: 1px solid #e1dfdd;
+}
+
+/* Dark theme card header */
+.dark .card-header {
+    background-color: #252526;
+    border-bottom: 1px solid #3e3e42;
+}
+
+.card-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #323130;
+    margin: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+}
+
+/* Dark theme card header text */
+.dark .card-header h3 {
+    color: #ffffff;
+}
+
+.card-body {
+    padding: 24px;
+}
+
+.markdown-body {
+    background-color: white;
+    border: 1px solid #e1dfdd;
+    border-radius: 8px;
+    padding: 24px;
+    margin: 16px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+}
+
+/* Dark theme markdown body */
+.dark .markdown-body {
+    background-color: #2d2d30;
+    border: 1px solid #3e3e42;
+    color: #ffffff;
+}
+
+/* Fluent Design typography and content styling */
+.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6 {
+    font-weight: 600;
+    color: #323130;
+    margin-bottom: 12px;
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+}
+
+/* Dark theme headings */
+.dark .markdown-body h1, .dark .markdown-body h2, .dark .markdown-body h3, .dark .markdown-body h4, .dark .markdown-body h5, .dark .markdown-body h6 {
+    color: #ffffff;
+}
+
+.markdown-body h1 {
+    font-size: 28px;
+    line-height: 36px;
+}
+.markdown-body h2 {
+    font-size: 20px;
+    line-height: 28px;
+}
+.markdown-body h3 {
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.markdown-body p {
+    color: #605e5c;
+    margin-bottom: 16px;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+/* Dark theme paragraph text */
+.dark .markdown-body p {
+    color: #cccccc;
+}
+
+.markdown-body ul, .markdown-body ol {
+    margin-left: 20px;
+    margin-bottom: 16px;
+    color: #605e5c;
+}
+
+/* Dark theme lists */
+.dark .markdown-body ul, .dark .markdown-body ol {
+    color: #cccccc;
+}
+
+.markdown-body li {
+    margin-bottom: 8px;
+    line-height: 20px;
+}
+
+.markdown-body code {
+    background-color: #f3f2f1;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    color: #605e5c;
+}
+
+/* Dark theme inline code */
+.dark .markdown-body code {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+}
+
+.markdown-body pre {
+    background-color: #f3f2f1;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    overflow-x: auto;
+    margin-bottom: 16px;
+    border: 1px solid #e1dfdd;
+}
+
+/* Dark theme code blocks */
+.dark .markdown-body pre {
+    background-color: #1e1e1e;
+    border: 1px solid #3e3e42;
+}
+
+.markdown-body blockquote {
+    border-left: 4px solid #0078d4;
+    padding-left: 16px;
+    font-style: italic;
+    color: #605e5c;
+    margin-bottom: 16px;
+    background-color: #f0f6ff;
+    padding: 16px;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Dark theme blockquotes */
+.dark .markdown-body blockquote {
+    color: #cccccc;
+    background-color: #264f78;
+}
+
+/* Fluent Design interactions */
+.fluent-hover {
+    transition: all 0.2s ease-in-out;
+}
+
+.fluent-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16);
+}
+
+/* Focus states for accessibility */
+input:focus, textarea:focus, button:focus {
+    outline: 2px solid #0078d4;
+    outline-offset: 2px;
+}
+
+/* Smooth transitions for all interactive elements */
+button, input, textarea {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f3f2f1;
+}
+
+/* Dark theme scrollbar track */
+.dark ::-webkit-scrollbar-track {
+    background: #2d2d30;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #605e5c;
+    border-radius: 4px;
+}
+
+/* Dark theme scrollbar thumb */
+.dark ::-webkit-scrollbar-thumb {
+    background: #868686;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #484644;
+}
+
+/* Dark theme scrollbar thumb hover */
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
 }
